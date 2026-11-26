@@ -1,0 +1,1 @@
+{"name":"helpdesk-pro-cpp","version-string":"1.0.0","dependencies":["cpp-httplib","nlohmann-json","openssl","libmysql"]}

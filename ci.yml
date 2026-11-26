@@ -1,0 +1,13 @@
+name: C++ CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y libcpp-httplib-dev nlohmann-json3-dev libssl-dev libmysqlclient-dev
+      - run: |
+          mkdir -p build
+          g++ -std=c++17 -I/usr/include/mysql src/main.cpp -o build/helpdesk -lcpp-httplib -lmysqlclient -lcrypto -pthread
+          g++ -std=c++17 -Isrc tests/validation.cpp -o build/validation_test
+          ./build/validation_test
